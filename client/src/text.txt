@@ -1,0 +1,70 @@
+bg-gradient-to-b from-primary to-teal
+
+
+//hero section
+import React, { useState } from "react";
+import free from "../assests/free.png";
+import { AiOutlineSearch } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+const Header = () => {
+  const [input, setInput] = useState("");
+  const navigate = useNavigate()
+
+  const handleSubmit = () => {
+    navigate(`/gigs?search=${input}`)
+  }
+  return (
+    <div className="min-h-min md:h-[60vh] pt-4 px-4 md:pt-20 bg-hero-pattern bg-no-repeat bg-cover">
+      <div className=" max-w-5xl mx-auto flex md:flex-row flex-col justify-center items-center gap-8 md:gap-4">
+        <div className="text-white flex-[2] flex flex-col gap-6">
+          <div className="font-bold text-xl md:text-4xl flex flex-col">
+            <span>Find the best freelance services</span>
+            <span>For your business</span>
+          </div>
+          <div className=" w-full md:w-[80%] flex items-center bg-white text-black h-10 rounded-l-md pl-2">
+            <div className="flex items-center gap-2 basis-[80%]">
+              <AiOutlineSearch size={25} />
+              <input
+                className="w-full h-full border-none outline-none focus:outline-none focus:ring-0"
+                type="text"
+                placeholder="Enter"
+                onChange={e=>setInput(e.target.value)}
+              />
+            </div>
+            <button type="submit" onClick={handleSubmit} className=" basis-[20%] bg-darkteal w-full h-full text-white font-bold">
+              Search
+            </button>
+          </div>
+          <div className="flex gap-2 items-center">
+            <span>Popular:</span>
+            <div className="flex flex-wrap gap-2 text-xs">
+              <button className="border-2 border-white p-1 rounded-lg">
+                Web design
+              </button>
+              <button className="border-2 border-white p-1 rounded-lg">
+                Logo design
+              </button>
+              <button className="border-2 border-white p-1 rounded-lg">
+                Web design
+              </button>
+              <button className="border-2 border-white p-1 rounded-lg">
+                Logo design
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className=" flex-1">
+          <LazyLoadImage
+            src={free}
+            className="object-cover max-h-52 md:h-full"
+            alt="header"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Header;
